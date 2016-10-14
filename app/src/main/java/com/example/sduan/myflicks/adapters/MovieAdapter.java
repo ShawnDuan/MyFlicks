@@ -1,12 +1,14 @@
 package com.example.sduan.myflicks.adapters;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.sduan.myflicks.R;
@@ -43,7 +45,23 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieItemVie
         holder.title.setText(movieInfo.getOriginalTitle());
         holder.overview.setText(movieInfo.getOverview());
 
-        Picasso.with(mActivity).load(movieInfo.getPosterPath()).into(holder.posterImage);
+        Picasso.with(mActivity).load((mActivity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ?
+                movieInfo.getPosterPath() : movieInfo.getBackdropPath())
+                .placeholder(R.drawable.placeholder)
+                .into(holder.posterImage);
+
+        int targetHeight, targetWidth;
+        if (mActivity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            targetHeight = (int) (mActivity.getResources().getDisplayMetrics().heightPixels * 0.333);
+            targetWidth = (int) (targetHeight * 0.75);
+        } else {
+            targetHeight = (int) (mActivity.getResources().getDisplayMetrics().heightPixels * 0.667);
+            targetWidth = (int) (targetHeight * 1.5);
+        }
+        ViewGroup.LayoutParams params = holder.posterImage.getLayoutParams();
+        params.height = targetHeight;
+        params.width = targetWidth;
+        holder.posterImage.setLayoutParams(params);
     }
 
     @Override
