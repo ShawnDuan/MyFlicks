@@ -1,34 +1,36 @@
-# MyFlicks
+# Project 1 - *MyFlicks*
 
-**MyFlicks** is Assignment #1 of [Codepath](http://codepath.com/) Android bootcamp, a read-only movie listing app using the Movie Database API.
+**MyFlicks** shows the latest movies currently playing in theaters. The app utilizes the Movie Database API to display images and basic information about these movies to the user.
 
-Time spent: **2.5** hours spent in total
+Time spent: **3** hours spent in total
 
 ## User Stories
 
 The following **required** functionality is completed:
 
-* [X] User can view a list of movies (title, poster image, and overview) currently playing in theaters from the Movie Database API.
-* [X] Lists should be fully optimized for performance with the ViewHolder pattern.
-* [X] Views should be responsive for both landscape/portrait mode.
-    * In portrait mode, the poster image, title, and movie overview is shown.
-    * In landscape mode, the rotated layout should use the backdrop image instead and show the title and movie overview to the right of it.
+* [X] User can **scroll through current movies** from the Movie Database API
+* [X] Layout is optimized with the [ViewHolder](http://guides.codepath.com/android/Using-an-ArrayAdapter-with-ListView#improving-performance-with-the-viewholder-pattern) pattern.
+* [X] For each movie displayed, user can see the following details:
+  * [X] Title, Poster Image, Overview (Portrait mode)
+  * [X] Title, Backdrop Image, Overview (Landscape mode)
 
 The following **optional** features are implemented:
 
-* [ ] Add pull-to-refresh for popular stream with SwipeRefreshLayout (1 point)
-* [X] Display a nice default placeholder graphic for each image during loading (read more about Picasso) (1 point)
-* [ ] Improve the user interface through styling and coloring (1 to 5 points depending on the difficulty of UI improvements)
-* [ ] For popular movies (i.e. a movie voted for more than 5 stars), the full backdrop image is displayed. Otherwise, a poster image, the movie title, and overview is listed. Use Heterogenous ListViews and use different ViewHolder layout files for popular movies and less popular ones. (2 points)
-* [ ] Stretch: Expose details of movie (ratings using RatingBar, popularity, and synopsis) in a separate activity. (3 points)
-* [ ] Stretch: Allow video posts to be played in full-screen using the YouTubePlayerView (2 points)
-    * When clicking on a popular movie (i.e. a movie voted for more than 5 stars) the video should be played immediately.
-    * Less popular videos rely on the detailed page should show an image preview that can initiate playing a YouTube video.
-    * See the trailers API for video information. Here's a sample request.
-* [ ] Stretch: Add a play icon overlay to popular movies to indicate that the movie can be played (1 point).
-* [ ] Stretch: Apply the popular ButterKnife annotation library to reduce view boilerplate. (1 point)
-* [ ] Stretch: Add a rounded corners for the images using the Picasso transformations. (1 point)
-* [ ] Stretch: Replace android-async-http network client with the popular OkHttp or Volley networking libraries for all TheMovieDB API calls. (1 points)
+* [ ] User can **pull-to-refresh** popular stream to get the latest movies.
+* [X] Display a nice default [placeholder graphic](http://guides.codepath.com/android/Displaying-Images-with-the-Picasso-Library#configuring-picasso) for each image during loading.
+* [ ] Improved the user interface through styling and coloring.
+
+The following **bonus** features are implemented:
+
+* [ ] Allow user to view details of the movie including ratings and popularity within a separate activity or dialog fragment.
+* [ ] When viewing a popular movie (i.e. a movie voted for more than 5 stars) the video should show the full backdrop image as the layout.  Uses [Heterogenous ListViews](http://guides.codepath.com/android/Implementing-a-Heterogenous-ListView) or [Heterogenous RecyclerView](http://guides.codepath.com/android/Heterogenous-Layouts-inside-RecyclerView) to show different layouts.
+* [ ] Allow video trailers to be played in full-screen using the YouTubePlayerView.
+    * [ ] Overlay a play icon for videos that can be played.
+    * [ ] More popular movies should start a separate activity that plays the video immediately.
+    * [ ] Less popular videos rely on the detail page should show ratings and a YouTube preview.
+* [ ] Apply the popular [Butterknife annotation library](http://guides.codepath.com/android/Reducing-View-Boilerplate-with-Butterknife) to reduce boilerplate code.
+* [ ] Apply rounded corners for the poster or background images using [Picasso transformations](https://guides.codepath.com/android/Displaying-Images-with-the-Picasso-Library#other-transformations)
+* [ ] Replaced android-async-http network client with the popular [OkHttp](http://guides.codepath.com/android/Using-OkHttp) or [Volley](http://guides.codepath.com/android/Networking-with-the-Volley-Library) networking libraries.
 
 The following **additional** features are implemented:
 
@@ -44,6 +46,11 @@ The following **additional** features are implemented:
 ## Notes
 
 <!---Describe any challenges encountered while building the app.--->
+
+## Open-source libraries used
+
+- [Android Async HTTP](https://github.com/loopj/android-async-http) - Simple asynchronous HTTP requests with JSON parsing
+- [Picasso](http://square.github.io/picasso/) - Image loading and caching library for Android
 
 ## License
 
