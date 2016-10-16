@@ -21,9 +21,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".models.MovieDetailActivity">
-
-        </activity>
+        <activity android:name=".models.MovieDetailActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.sduan.myflicks.R;
+import com.example.sduan.myflicks.Utils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.squareup.picasso.Picasso;
@@ -55,7 +57,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         mRateBar = (RatingBar) findViewById(R.id.rbRate);
         mRateText = (TextView) findViewById(R.id.tvRate);
         mOverview = (TextView) findViewById(R.id.tvDetailOverview);
-
+        mOverview.setMovementMethod(new ScrollingMovementMethod());
 
         mMovieId = getIntent().getExtras().getLong("movieId");
         String getDetailURL = GET_MOVIE_DETAIL_PRE_URL + String.valueOf(mMovieId) + GET_MOVIE_DETAIL_POST_URL;
@@ -85,11 +87,12 @@ public class MovieDetailActivity extends AppCompatActivity {
             Picasso.with(MovieDetailActivity.this).load(mMovie.getBackdropPath())
                     .placeholder(R.drawable.placeholder)
                     .into(mPosterImage);
-            mToolbar.setTitle(mMovie.getOriginalTitle());
-            mTitle.setText(mMovie.getOriginalTitle());
-            mReleaseDate.setText(String.format("Release Date: %s", mMovie.getReleaseDate().toString()));
+            String title = mMovie.getOriginalTitle();
+            mToolbar.setTitle(title);
+            mTitle.setText(title);
+            mReleaseDate.setText(String.format("Release Date: %s", Utils.dateToString(mMovie.getReleaseDate())));
             mRateBar.setRating((float) (mMovie.getVoteAverage() * 0.5));
-            mRateText.setText(String.format("%.1f/10", mMovie.getVoteAverage()));
+            mRateText.setText(String.format("%d reviewed", mMovie.getVoteCount()));
             mOverview.setText(mMovie.getOverview());
         } catch (Exception ex) {
             Log.d(TAG, "Not able to update yet.");

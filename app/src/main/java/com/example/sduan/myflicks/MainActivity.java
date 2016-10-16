@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Refreshing movie list completed.", Toast.LENGTH_SHORT).show();
             }
         });
+        mSwipeContainer.setColorSchemeResources(R.color.customize_Dark);
 
         mMovies = new ArrayList<>();
         mRecyclerView = (RecyclerView) findViewById(R.id.rvMovies);

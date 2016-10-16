@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
@@ -8,7 +8,8 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/appbarLayout">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -19,56 +20,73 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="338dp"
+        tools:src="@drawable/placeholder"
+        android:scaleType="centerCrop"
+        android:id="@+id/imageView"
+        android:layout_below="@id/appbarLayout"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceSearchResultTitle"
+        android:layout_margin="@dimen/details_padding"
+        android:textSize="24sp"
+        tools:text="The Magnificent Seven"
+        android:id="@+id/tvDetailTitle"
+        android:layout_below="@id/imageView"/>
+
+    <TextView
+        tools:text="Release Date: 2016-10-16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDetailDate"
+        android:layout_below="@id/tvDetailTitle"
+        android:layout_alignLeft="@+id/tvDetailTitle"
+        android:layout_alignStart="@+id/tvDetailTitle"
+        android:layout_alignRight="@+id/tvDetailTitle"
+        android:layout_alignEnd="@+id/tvDetailTitle"/>
+
+    <RatingBar
+        android:theme="@style/RatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        android:numStars="5"
+        tools:rating="3.7"
+        android:stepSize="0.1"
+        android:id="@+id/rbRate"
+        android:layout_below="@id/tvDetailDate"
+        android:layout_alignLeft="@+id/tvDetailDate"
+        android:layout_alignStart="@+id/tvDetailDate"/>
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        tools:text="4.0/10"
+        android:textColor="@color/black"
+        android:id="@+id/tvRate"
+        android:layout_below="@id/tvDetailDate"
+        android:layout_toRightOf="@id/rbRate"
+        android:layout_alignBottom="@+id/rbRate"
+        android:layout_alignRight="@+id/tvDetailDate"
+        android:layout_alignEnd="@+id/tvDetailDate"
+        android:gravity="center"/>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:src="@drawable/placeholder"
-            android:scaleType="centerCrop"
-            android:id="@+id/imageView"/>
+    <TextView
+        tools:text="A big screen remake of John Sturges' classic western The Magnificent Seven, itself a remake of Akira Kurosawa's Seven Samurai. Seven gun men in the old west gradually come together to help a poor village against savage thieves."
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rbRate"
+        android:layout_alignLeft="@+id/rbRate"
+        android:layout_alignStart="@+id/rbRate"
+        android:layout_alignRight="@+id/tvRate"
+        android:layout_alignEnd="@+id/tvRate"
+        android:layout_marginBottom="@dimen/details_padding"
+        android:scrollbars="vertical"
+        android:id="@+id/tvDetailOverview"/>
 
-        <TextView
-            android:text="TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceLargePopupMenu"
-            android:id="@+id/tvDetailTitle"/>
 
-        <TextView
-            android:text="TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvDetailDate"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical">
-            <RatingBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:stepSize="0.1"
-                android:id="@+id/rbRate"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                tools:text="4.0/10"
-                android:id="@+id/tvRate"/>
-        </LinearLayout>
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvDetailOverview"/>
-    </LinearLayout>
-
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>
