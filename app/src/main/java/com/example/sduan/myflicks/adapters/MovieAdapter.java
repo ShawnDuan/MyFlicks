@@ -1,29 +1,32 @@
 package com.example.sduan.myflicks.adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.sduan.myflicks.R;
 import com.example.sduan.myflicks.models.Movie;
+import com.example.sduan.myflicks.models.MovieDetailActivity;
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 /**
  * Created by sduan on 10/11/16.
  */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieItemViewHolder> {
+
+    private final static String TAG = "MovieAdapter";
+
     private AppCompatActivity mActivity;
     private ArrayList<Movie> mMovieArray;
 
@@ -80,6 +83,20 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieItemVie
             posterImage = (ImageView) itemView.findViewById(R.id.ivPoster);
             title = (TextView) itemView.findViewById(R.id.tvMovieTitle);
             overview = (TextView) itemView.findViewById(R.id.tvMovieOverview);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    Movie movie = mMovieArray.get(position);
+                    long movieId = movie.getMovieId();
+                    Log.d(TAG, "click on movie id: " + movieId);
+
+                    Intent intent = new Intent(mActivity, MovieDetailActivity.class);
+                    intent.putExtra("movieId", movieId);
+                    mActivity.startActivityForResult(intent, 0);
+                }
+            });
         }
     }
 }
