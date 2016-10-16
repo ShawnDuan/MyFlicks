@@ -25,6 +25,7 @@ public class Movie {
     int voteCount;
     float popularity;
     String releaseDate;     // 2016-09-14
+    String trailerPath;
 
 
     public long getMovieId() {
@@ -68,6 +69,14 @@ public class Movie {
             e.printStackTrace();
         }
         return date;
+    }
+
+    public String getTrailerPath() {
+        return trailerPath;
+    }
+
+    public void setTrailerPath(String trailerPath) {
+        this.trailerPath = trailerPath;
     }
 
     public Movie(JSONObject jsonObject) throws JSONException {

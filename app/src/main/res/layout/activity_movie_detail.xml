@@ -20,12 +20,11 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <ImageView
+    <com.google.android.youtube.player.YouTubePlayerView
         android:layout_width="match_parent"
-        android:layout_height="338dp"
-        tools:src="@drawable/placeholder"
-        android:scaleType="centerCrop"
-        android:id="@+id/imageView"
+        android:layout_height="wrap_content"
+        tools:layout_height="300dp"
+        android:id="@+id/videoPlayer"
         android:layout_below="@id/appbarLayout"/>
 
     <TextView
@@ -36,7 +35,7 @@
         android:textSize="24sp"
         tools:text="The Magnificent Seven"
         android:id="@+id/tvDetailTitle"
-        android:layout_below="@id/imageView"/>
+        android:layout_below="@id/videoPlayer"/>
 
     <TextView
         tools:text="Release Date: 2016-10-16"

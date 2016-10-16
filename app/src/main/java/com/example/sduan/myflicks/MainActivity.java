@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 requestMovieListAsync();
-                Toast.makeText(MainActivity.this, "Refreshing movie list completed.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Refreshing completed.", Toast.LENGTH_SHORT).show();
             }
         });
         mSwipeContainer.setColorSchemeResources(R.color.customize_Dark);
