@@ -44,7 +44,7 @@ public class MovieDetailActivity extends YouTubeBaseActivity {
     final String GET_TRAILER_URL = "https://api.themoviedb.org/3/movie/%d/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
     private Toolbar mToolbar;
-    private YouTubePlayerView mYouTubePlayoerView;
+    private YouTubePlayerView mYouTubePlayerView;
     private TextView mTitle;
     private TextView mReleaseDate;
     private RatingBar mRateBar;
@@ -57,7 +57,7 @@ public class MovieDetailActivity extends YouTubeBaseActivity {
 
         setContentView(R.layout.activity_movie_detail);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mYouTubePlayoerView = (YouTubePlayerView) findViewById(R.id.videoPlayer);
+        mYouTubePlayerView = (YouTubePlayerView) findViewById(R.id.videoPlayer);
         mTitle = (TextView) findViewById(R.id.tvDetailTitle);
         mReleaseDate = (TextView) findViewById(R.id.tvDetailDate);
         mRateBar = (RatingBar) findViewById(R.id.rbRate);
@@ -116,7 +116,7 @@ public class MovieDetailActivity extends YouTubeBaseActivity {
             mRateText.setText(String.format("%d reviewed", mMovie.getVoteCount()));
             mOverview.setText(mMovie.getOverview());
 
-            mYouTubePlayoerView.initialize("AIzaSyCD-FcZQmd2Hb6JC5qwTpcmk43XdwXxOIs",
+            mYouTubePlayerView.initialize("AIzaSyCD-FcZQmd2Hb6JC5qwTpcmk43XdwXxOIs",
                     new YouTubePlayer.OnInitializedListener() {
                         @Override
                         public void onInitializationSuccess(YouTubePlayer.Provider provider,

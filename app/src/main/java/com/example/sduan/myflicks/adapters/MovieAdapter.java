@@ -21,6 +21,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
+
 /**
  * Created by sduan on 10/11/16.
  */
@@ -70,13 +72,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieItemVie
             imagePath = movieInfo.getBackdropPath();
         }
         Picasso.with(mActivity).load(imagePath)
+                .transform(new RoundedCornersTransformation(10, 10))
                 .placeholder(R.drawable.placeholder)
                 .into(holder.posterImage);
         holder.title.setText(movieInfo.getOriginalTitle());
 
         if (holder.getItemViewType() == LESS_POPULAR) {
             holder.overview.setText(movieInfo.getOverview());
-            holder.ratingBar.setRating(movieInfo.getVoteAverage() * 0.5f);
+            holder.ratingBar.setRating((float) (movieInfo.getVoteAverage() * 0.5));
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
