@@ -40,7 +40,7 @@ The following **additional** features are implemented:
 <!---Here's a walkthrough of implemented user stories:--->
 
 <div>
-    <img src='https://raw.githubusercontent.com/shawnduan/MyFlicks/master/art/flicks_demo.gif' style='border: #f1f1f1 solid 1px; width:75%; height:75%'/>
+    <img src='https://raw.githubusercontent.com/shawnduan/MyFlicks/master/art/flicks_demo.gif' style='border: #f1f1f1 solid 1px'/>
 </div>
 
 ## Notes
