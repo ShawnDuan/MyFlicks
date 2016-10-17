@@ -23,7 +23,7 @@
     <com.google.android.youtube.player.YouTubePlayerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout_height="300dp"
+        tools:layout_height="240dp"
         android:id="@+id/videoPlayer"
         android:layout_below="@id/appbarLayout"/>
 

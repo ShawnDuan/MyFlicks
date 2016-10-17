@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.sduan.myflicks.R;
@@ -75,6 +76,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieItemVie
 
         if (holder.getItemViewType() == LESS_POPULAR) {
             holder.overview.setText(movieInfo.getOverview());
+            holder.ratingBar.setRating(movieInfo.getVoteAverage() * 0.5f);
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -102,11 +104,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieItemVie
 
         ImageView posterImage;
         TextView title;
+        RatingBar ratingBar;
         TextView overview;
 
         public MovieItemViewHolder(View itemView) {
             super(itemView);
             posterImage = (ImageView) itemView.findViewById(R.id.ivPoster);
+            ratingBar = (RatingBar) itemView.findViewById(R.id.rbMovieRate);
             title = (TextView) itemView.findViewById(R.id.tvMovieTitle);
             overview = (TextView) itemView.findViewById(R.id.tvMovieOverview);
         }
