@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sduan.myflicks.R;
+import com.example.sduan.myflicks.TrailerFullScreenPlayActivity;
 import com.example.sduan.myflicks.models.Movie;
-import com.example.sduan.myflicks.models.MovieDetailActivity;
+import com.example.sduan.myflicks.MovieDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -28,6 +28,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieItemVie
 
     private final static String TAG = "MovieAdapter";
 
+    private final static int MORE_POPULAR = 1;
+    private final static int LESS_POPULAR = 2;
+
     private AppCompatActivity mActivity;
     private ArrayList<Movie> mMovieArray;
 
@@ -37,35 +40,57 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieItemVie
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return (mMovieArray.get(position).getVoteAverage() > 5.0f) ? MORE_POPULAR : LESS_POPULAR;
+    }
+
+    @Override
     public MovieItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listed_movie, parent, false);
+        View view;
+        if (viewType == MORE_POPULAR) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listed_movie_simple, parent, false);
+        } else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listed_movie, parent, false);
+        }
         MovieItemViewHolder viewHolder = new MovieItemViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(MovieItemViewHolder holder, int position) {
-        Movie movieInfo = mMovieArray.get(position);
-        holder.title.setText(movieInfo.getOriginalTitle());
-        holder.overview.setText(movieInfo.getOverview());
+        final Movie movieInfo = mMovieArray.get(position);
+        final long movieId = movieInfo.getMovieId();
+        final int viewType = holder.getItemViewType();
 
-        Picasso.with(mActivity).load((mActivity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ?
-                movieInfo.getPosterPath() : movieInfo.getBackdropPath())
+        String imagePath;
+        if (mActivity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT && viewType == LESS_POPULAR) {
+            imagePath = movieInfo.getPosterPath();
+        } else {
+            imagePath = movieInfo.getBackdropPath();
+        }
+        Picasso.with(mActivity).load(imagePath)
                 .placeholder(R.drawable.placeholder)
                 .into(holder.posterImage);
+        holder.title.setText(movieInfo.getOriginalTitle());
 
-        int targetHeight, targetWidth;
-        if (mActivity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            targetHeight = (int) (mActivity.getResources().getDisplayMetrics().heightPixels * 0.333);
-            targetWidth = (int) (targetHeight * 0.75);
-        } else {
-            targetHeight = (int) (mActivity.getResources().getDisplayMetrics().heightPixels * 0.667);
-            targetWidth = (int) (targetHeight * 1.5);
+        if (holder.getItemViewType() == LESS_POPULAR) {
+            holder.overview.setText(movieInfo.getOverview());
         }
-        ViewGroup.LayoutParams params = holder.posterImage.getLayoutParams();
-        params.height = targetHeight;
-        params.width = targetWidth;
-        holder.posterImage.setLayoutParams(params);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "click on movie id: " + movieId);
+                Intent intent;
+                if (viewType == LESS_POPULAR) {
+                    intent = new Intent(mActivity, MovieDetailActivity.class);
+                } else {
+                    intent = new Intent(mActivity, TrailerFullScreenPlayActivity.class);
+                }
+                intent.putExtra("movieId", movieId);
+                mActivity.startActivityForResult(intent, 0);
+            }
+        });
     }
 
     @Override
@@ -84,20 +109,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieItemVie
             posterImage = (ImageView) itemView.findViewById(R.id.ivPoster);
             title = (TextView) itemView.findViewById(R.id.tvMovieTitle);
             overview = (TextView) itemView.findViewById(R.id.tvMovieOverview);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    Movie movie = mMovieArray.get(position);
-                    long movieId = movie.getMovieId();
-                    Log.d(TAG, "click on movie id: " + movieId);
-
-                    Intent intent = new Intent(mActivity, MovieDetailActivity.class);
-                    intent.putExtra("movieId", movieId);
-                    mActivity.startActivityForResult(intent, 0);
-                }
-            });
         }
     }
 }

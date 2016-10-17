@@ -10,4 +10,12 @@
     <dimen name="tiny_margin">2dp</dimen>
     <dimen name="small_margin">5dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <!--ImageView-->
+    <dimen name="poster_width">135dp</dimen>
+    <dimen name="poster_height">200dp</dimen>
+    <dimen name="backdrop_weight">400dp</dimen>
+    <dimen name="backdrop_height">270dp</dimen>
+
+    <dimen name="play_button_dimen">70dp</dimen>
 </resources>

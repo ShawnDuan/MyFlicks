@@ -1,4 +1,4 @@
-package com.example.sduan.myflicks.models;
+package com.example.sduan.myflicks;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.sduan.myflicks.R;
 import com.example.sduan.myflicks.Utils;
+import com.example.sduan.myflicks.models.Movie;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;

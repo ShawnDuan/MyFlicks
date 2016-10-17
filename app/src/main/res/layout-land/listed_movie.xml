@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/ivPoster"
-        android:layout_width="@dimen/poster_width"
-        android:layout_height="@dimen/poster_height"
+        android:layout_width="@dimen/backdrop_weight"
+        android:layout_height="@dimen/backdrop_height"
         tools:src="@drawable/placeholder"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"

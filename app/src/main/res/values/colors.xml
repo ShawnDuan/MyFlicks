@@ -9,6 +9,7 @@
 
     <!--http://paletton.com/#uid=13J0u0kl2lDaqwMfIqYqogivKaW-->
     <color name="customize_Primary">#2F4673</color>
+    <color name="customize_Primary_50_percent">#802F4673</color>
     <color name="customize_Dark">#06183A</color>
     <color name="customize_Light">#50658F</color>
     <color name="customize_Verylight">#7A8BAC</color>

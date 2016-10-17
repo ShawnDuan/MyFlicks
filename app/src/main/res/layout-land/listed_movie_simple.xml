@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:background="@drawable/bg_rectangle_with_shadow"
+             android:padding="@dimen/listitem_padding"
+             android:layout_margin="@dimen/tiny_margin"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/ivPoster"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/backdrop_height"
+        tools:src="@drawable/placeholder"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"/>
+
+    <ImageView
+        android:id="@+id/ivPlay"
+        android:layout_width="@dimen/play_button_dimen"
+        android:layout_height="@dimen/play_button_dimen"
+        android:src="@drawable/ic_play_circle_outline_white_48dp"
+        android:visibility="visible"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/tvMovieTitle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        tools:text="Movie title"
+        android:textColor="@color/white"
+        android:textAppearance="?android:attr/textAppearanceSearchResultTitle"
+        android:textSize="18sp"
+        android:gravity="center_vertical|left"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@color/customize_Primary_50_percent"
+        android:maxLines="1"
+        android:ellipsize="end"/>
+</RelativeLayout>
